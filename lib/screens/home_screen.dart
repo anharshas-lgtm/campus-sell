@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import '../models/ad_model.dart';
 import '../services/ad_service.dart';
+import '../utils/cloudinary_url.dart';
 import 'ad_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -277,24 +279,20 @@ class _AdCard extends StatelessWidget {
                     width: double.infinity,
                     child: Stack(
                       children: [
-                        // Image fills full area
+                        // Image fills full area (small Cloudinary thumbnail,
+                        // cached on disk + memory)
                         Positioned.fill(
                           child: ad.images.isNotEmpty
-                              ? Image.network(
-                            ad.images.first,
+                              ? CachedNetworkImage(
+                            imageUrl: CloudinaryUrl.thumb(
+                                ad.images.first),
                             fit: BoxFit.cover,
-                            loadingBuilder:
-                                (_, child, progress) =>
-                            progress == null
-                                ? child
-                                : const Center(
-                                child:
-                                CircularProgressIndicator(
-                                    strokeWidth:
-                                    2,
-                                    color: Colors
-                                        .deepPurple)),
-                            errorBuilder: (_, __, ___) =>
+                            memCacheWidth: 500,
+                            fadeInDuration:
+                            const Duration(milliseconds: 150),
+                            placeholder: (_, __) => Container(
+                                color: const Color(0xFFF0EDFF)),
+                            errorWidget: (_, __, ___) =>
                                 _placeholder(),
                           )
                               : _placeholder(),

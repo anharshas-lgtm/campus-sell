@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/ad_model.dart';
+import '../utils/cloudinary_url.dart';
 
 class AdDetailScreen extends StatefulWidget {
   final AdModel ad;
@@ -468,15 +470,26 @@ class _AdDetailScreenState extends State<AdDetailScreen> {
               itemCount: ad.images.length,
               onPageChanged: (i) =>
                   setState(() => _currentImageIndex = i),
-              itemBuilder: (_, i) => Image.network(
-                ad.images[i],
+              itemBuilder: (_, i) => CachedNetworkImage(
+                imageUrl: CloudinaryUrl.medium(ad.images[i]),
                 fit: BoxFit.cover,
                 width: double.infinity,
-                loadingBuilder: (_, child, progress) => progress == null
-                    ? child
-                    : const Center(
-                    child: CircularProgressIndicator()),
-                errorBuilder: (_, __, ___) => Container(
+                height: double.infinity,
+                fadeInDuration: const Duration(milliseconds: 150),
+                // While the larger image loads, show the small thumbnail
+                // (already cached from the home grid, so it appears instantly).
+                placeholder: (_, __) => CachedNetworkImage(
+                  imageUrl: CloudinaryUrl.thumb(ad.images[i]),
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: double.infinity,
+                  fadeInDuration: Duration.zero,
+                  placeholder: (_, __) => const Center(
+                      child: CircularProgressIndicator()),
+                  errorWidget: (_, __, ___) =>
+                  const SizedBox.shrink(),
+                ),
+                errorWidget: (_, __, ___) => Container(
                   color: const Color(0xFFF0EDFF),
                   child: const Icon(Icons.broken_image_outlined,
                       size: 60, color: Colors.grey),
@@ -524,11 +537,19 @@ class _FullImageViewer extends StatefulWidget {
 
 class _FullImageViewerState extends State<_FullImageViewer> {
   late int _current;
+  late final PageController _pageController;
 
   @override
   void initState() {
     super.initState();
     _current = widget.initialIndex;
+    _pageController = PageController(initialPage: widget.initialIndex);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -543,19 +564,29 @@ class _FullImageViewerState extends State<_FullImageViewer> {
             const TextStyle(color: Colors.white, fontSize: 16)),
       ),
       body: PageView.builder(
-        controller: PageController(initialPage: widget.initialIndex),
+        controller: _pageController,
         itemCount: widget.images.length,
         onPageChanged: (i) => setState(() => _current = i),
         itemBuilder: (_, i) => InteractiveViewer(
           child: Center(
-            child: Image.network(
-              widget.images[i],
+            child: CachedNetworkImage(
+              imageUrl: CloudinaryUrl.large(widget.images[i]),
               fit: BoxFit.contain,
-              loadingBuilder: (_, child, progress) => progress == null
-                  ? child
-                  : const Center(
-                  child: CircularProgressIndicator(
-                      color: Colors.white)),
+              // Show the medium image (cached from the detail screen)
+              // while the large version loads.
+              placeholder: (_, __) => CachedNetworkImage(
+                imageUrl: CloudinaryUrl.medium(widget.images[i]),
+                fit: BoxFit.contain,
+                fadeInDuration: Duration.zero,
+                placeholder: (_, __) => const Center(
+                    child: CircularProgressIndicator(
+                        color: Colors.white)),
+                errorWidget: (_, __, ___) => const SizedBox.shrink(),
+              ),
+              errorWidget: (_, __, ___) => const Icon(
+                  Icons.broken_image_outlined,
+                  size: 60,
+                  color: Colors.white54),
             ),
           ),
         ),
