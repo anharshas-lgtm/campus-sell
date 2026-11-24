@@ -1,0 +1,116 @@
+# =====================================
+# Miscellaneous
+# =====================================
+*.class
+*.log
+*.pyc
+*.swp
+*.tmp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# =====================================
+# IntelliJ / Android Studio
+# =====================================
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# =====================================
+# VS Code
+# =====================================
+.vscode/
+
+# =====================================
+# Flutter / Dart / Pub
+# =====================================
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# =====================================
+# Flutter Documentation
+# =====================================
+**/doc/api/
+
+# =====================================
+# Android Generated Files
+# =====================================
+**/android/.gradle/
+**/android/local.properties
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Android signing keys - NEVER COMMIT
+**/android/key.properties
+*.jks
+*.keystore
+
+# =====================================
+# iOS Generated Files
+# =====================================
+**/ios/Flutter/.last_build_id
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/Generated.xcconfig
+
+# =====================================
+# Symbolication
+# =====================================
+app.*.symbols
+
+# =====================================
+# Obfuscation
+# =====================================
+app.*.map.json
+
+# =====================================
+# Environment Variables
+# =====================================
+.env
+.env.*
+!.env.example
+
+# =====================================
+# Firebase Generated Files
+# =====================================
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# =====================================
+# Operating System
+# =====================================
+Thumbs.db
+# Node.js dependencies
+**/node_modules/
+
+# Firebase local cache
+.firebase/
+
+# Firebase emulator data
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+# Firebase service account credentials
+serviceAccountKey.json
+service-account*.json
+*serviceAccount*.json
+
+# Private credentials
+*.pem
+*.p12

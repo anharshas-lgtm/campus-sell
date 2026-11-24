@@ -1,0 +1,78 @@
+{
+  "project_info": {
+    "project_number": "803092357329",
+    "project_id": "campusmart-a9735",
+    "storage_bucket": "campusmart-a9735.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803092357329:android:b57db718f17598eb5765f0",
+        "android_client_info": {
+          "package_name": "com.company.campusmart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803092357329-6iarhgs1pubef3qjecrtrvmok2qlboir.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.campusmart",
+            "certificate_hash": "4040269a669b9464ea81e3f0d5055b55d0b609a4"
+          }
+        },
+        {
+          "client_id": "803092357329-7lqs1t6ns2p8babf97vieuebh6fbq6s2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.campusmart",
+            "certificate_hash": "ad78bfc673fdbd63388968aeac5d3091b610506f"
+          }
+        },
+        {
+          "client_id": "803092357329-mkqr655vsmfannaapk8a3pd4urlj8oiq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.campusmart",
+            "certificate_hash": "55f4bf72122800cdc7e0bb3142b43c8c785c2ef5"
+          }
+        },
+        {
+          "client_id": "803092357329-nrb1ughrqvti4imd1cg13qn92rf31pka.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.campusmart",
+            "certificate_hash": "3bf6ff86ca2585d253ad7111c8949de7b7346225"
+          }
+        },
+        {
+          "client_id": "803092357329-ujlmpv3d12vvi6p91ta61e454kfksbs5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJQaYF8LwqoE_Zne4l7tB6Emnwzs_kQtc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803092357329-ujlmpv3d12vvi6p91ta61e454kfksbs5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "803092357329-9d5itci8n96829siuqmv20b3b6vpromg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.campusMart"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
