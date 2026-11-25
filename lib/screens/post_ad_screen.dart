@@ -169,8 +169,8 @@ class _PostAdScreenState extends State<PostAdScreen> {
             _priceController.clear();
             _contactController.clear();
           });
-          // Switch to Home tab after posting
-          MainScreen.tabNotifier.value = 0;
+          // Switch to Sell tab after posting
+          MainScreen.tabNotifier.value = 1;
         } else {
           Navigator.of(context).pop();
         }
@@ -271,7 +271,7 @@ class _PostAdScreenState extends State<PostAdScreen> {
                             child: ElevatedButton.icon(
                               onPressed: () {
                                 // Switch to Profile tab instantly
-                                MainScreen.tabNotifier.value = 2;
+                                MainScreen.tabNotifier.value = 3;
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor:

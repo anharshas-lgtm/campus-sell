@@ -10,6 +10,8 @@ import 'screens/campus_selection_screen.dart';
 import 'screens/main_screen.dart';
 import 'services/auth_service.dart';
 import 'services/notification_service.dart';
+import 'services/admin_service.dart';
+import 'config/groq_config.dart';
 
 // ── MUST be top-level function — handles background messages ──────────────────
 @pragma('vm:entry-point')
@@ -36,6 +38,12 @@ Future<void> main() async {
 
   // ── Initialize notification service ──────────────────────────────────────
   await NotificationService().init();
+
+  // ── Initialize Campus Board Remote Config & Admin list ───────────────────
+  await Future.wait([
+    GroqConfig.init(),
+    AdminService.loadAdmins(),
+  ]);
 
   runApp(const MyApp());
 }

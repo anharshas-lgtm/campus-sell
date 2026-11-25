@@ -9,6 +9,7 @@ import '../services/utility_service.dart';
 import 'utils/my_campus_screen.dart';
 import 'utils/report_problem_screen.dart';
 import 'utils/my_ads_screen.dart';
+import 'utils/my_board_posts_screen.dart';
 import 'utils/contact_us_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -554,6 +555,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           // ── My Activity ───────────────────────────────────────────────
           _sectionLabel('My Activity'),
+          _tile(Icons.campaign_outlined, 'My Board Posts', Colors.deepPurple,
+                  () => Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => const MyBoardPostsScreen()))),
           _tile(Icons.sell_outlined, 'My Ads', Colors.deepPurple,
                   () => Navigator.push(context,
                   MaterialPageRoute(builder: (_) => const MyAdsScreen()))),
